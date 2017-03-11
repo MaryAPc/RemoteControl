@@ -2,6 +2,7 @@ package com.maryapc.remotecontrol;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ public class MainActivity extends MvpAppCompatActivity implements ActivityView {
 			if (resultCode == RecognizerActivity.RESULT_OK && data != null) {
 				final String result = data.getStringExtra(RecognizerActivity.EXTRA_RESULT);
 				mPresenter.setRecognizedText(result);
+				mPresenter.sendCommand(result);
 			} else if (resultCode == RecognizerActivity.RESULT_ERROR) {
 				String error = ((ru.yandex.speechkit.Error) data.getSerializableExtra(RecognizerActivity.EXTRA_ERROR)).getString();
 				Log.e(TAG, error);
@@ -66,5 +68,16 @@ public class MainActivity extends MvpAppCompatActivity implements ActivityView {
 	@Override
 	public void showRecognizedText(String resultText) {
 		mRecognizedTextView.setText(resultText);
+	}
+
+	@Override
+	public void showUnsupportedCommand() {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Ошибка!")
+					.setMessage("Команда неподдерживается")
+					.setCancelable(true)
+					.setNeutralButton("OK", null);
+			AlertDialog dialog = builder.create();
+			dialog.show();
 	}
 }

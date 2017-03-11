@@ -10,4 +10,6 @@ public interface ActivityView extends MvpView {
 	void startListen();
 
 	void showRecognizedText(String resultText);
+
+	void showUnsupportedCommand();
 }
