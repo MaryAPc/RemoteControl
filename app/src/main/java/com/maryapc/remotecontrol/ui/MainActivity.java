@@ -1,4 +1,4 @@
-package com.maryapc.remotecontrol;
+package com.maryapc.remotecontrol.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,13 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.maryapc.remotecontrol.R;
+import com.maryapc.remotecontrol.presenter.Presenter;
+import com.maryapc.remotecontrol.view.ActivityView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +33,7 @@ public class MainActivity extends MvpAppCompatActivity implements ActivityView {
 
 	private static final int REQUEST_CODE = 1;
 	private static final String TAG = "MainActivity";
-	private static final String API_KEY = "key";
+	private static final String API_KEY = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +75,18 @@ public class MainActivity extends MvpAppCompatActivity implements ActivityView {
 	}
 
 	@Override
-	public void showUnsupportedCommand() {
+	public void showAnswerDialog(String title, String message) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("Ошибка!")
-					.setMessage("Команда неподдерживается")
+			builder.setTitle(R.string.error)
+					.setMessage(R.string.command_not_support)
 					.setCancelable(true)
-					.setNeutralButton("OK", null);
+					.setNeutralButton(android.R.string.ok, null);
 			AlertDialog dialog = builder.create();
 			dialog.show();
+	}
+
+	@Override
+	public void showToast(String message) {
+		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
 }

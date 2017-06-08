@@ -1,4 +1,4 @@
-package com.maryapc.remotecontrol;
+package com.maryapc.remotecontrol.view;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
@@ -11,5 +11,7 @@ public interface ActivityView extends MvpView {
 
 	void showRecognizedText(String resultText);
 
-	void showUnsupportedCommand();
+	void showAnswerDialog(String title, String message);
+
+	void showToast(String message);
 }

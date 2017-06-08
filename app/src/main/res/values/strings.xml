@@ -3,4 +3,7 @@
 	<string name="you_command">Ваша команда:</string>
 	<string name="hint_command">Здесь появится текст распознанной команды</string>
 	<string name="listen">Listen</string>
+	<string name="error">Ошибка!</string>
+	<string name="command_not_support">Команда не поддерживается</string>
+	<string name="command_done">Команда выполнена</string>
 </resources>

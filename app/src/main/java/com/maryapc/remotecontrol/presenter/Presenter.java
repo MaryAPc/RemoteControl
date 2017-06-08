@@ -1,4 +1,4 @@
-package com.maryapc.remotecontrol;
+package com.maryapc.remotecontrol.presenter;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,20 +9,25 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.maryapc.remotecontrol.MyApplication;
+import com.maryapc.remotecontrol.R;
+import com.maryapc.remotecontrol.view.ActivityView;
 
 @InjectViewState
 public class Presenter extends MvpPresenter<ActivityView> {
 
 	private static final String TAG = "Presenter";
 
-	public static final String SERVER_IP = "192.168.0.101";
+	public static final String SERVER_IP = "192.168.0.103";
 	public static final int SERVER_PORT = 8081;
 
 	private Socket mSocket;
+	private Context mContext = MyApplication.getInstance();
 
 	public void listenCommand() {
 		getViewState().startListen();
@@ -66,7 +71,9 @@ public class Presenter extends MvpPresenter<ActivityView> {
 		protected void onPostExecute(Void aVoid) {
 			super.onPostExecute(aVoid);
 			if (status.equals("error")){
-				getViewState().showUnsupportedCommand();
+				getViewState().showAnswerDialog(mContext.getString(R.string.error), mContext.getString(R.string.command_not_support));
+			} else {
+				getViewState().showToast(mContext.getString(R.string.command_done));
 			}
 		}
 	}
