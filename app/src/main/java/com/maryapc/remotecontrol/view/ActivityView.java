@@ -14,4 +14,8 @@ public interface ActivityView extends MvpView {
 	void showAnswerDialog(String title, String message);
 
 	void showToast(String message);
+
+	void showSettingDialog();
+
+	void updateIpTextView();
 }

@@ -23,8 +23,8 @@ public class Presenter extends MvpPresenter<ActivityView> {
 
 	private static final String TAG = "Presenter";
 
-	public static final String SERVER_IP = "192.168.0.103";
-	public static final int SERVER_PORT = 8081;
+	public static String sServerIp = "192.168.0.103";
+	public static final int SERVER_PORT = 8381;
 
 	private Socket mSocket;
 	private Context mContext = MyApplication.getInstance();
@@ -41,6 +41,14 @@ public class Presenter extends MvpPresenter<ActivityView> {
 		new TCPTask().execute(command);
 	}
 
+	public void showSettingDialog() {
+		getViewState().showSettingDialog();
+	}
+
+	public void setCurrentIpText() {
+		getViewState().updateIpTextView();
+	}
+
 	private class TCPTask extends AsyncTask<String, Void, Void> {
 
 		private String status = "";
@@ -48,7 +56,7 @@ public class Presenter extends MvpPresenter<ActivityView> {
 		@Override
 		protected Void doInBackground(String... message) {
 			try {
-				InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
+				InetAddress serverAddr = InetAddress.getByName(sServerIp);
 				mSocket = new Socket(serverAddr, SERVER_PORT);
 				PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(mSocket.getOutputStream())), true);
 				out.println(message[0]);

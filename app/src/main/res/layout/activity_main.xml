@@ -11,16 +11,25 @@
 	android:paddingRight="@dimen/activity_horizontal_margin"
 	android:paddingTop="@dimen/activity_vertical_margin"
 	tools:context="com.maryapc.remotecontrol.ui.MainActivity">
-
+	
+	<TextView
+		android:id="@+id/activity_main_text_view_current_ip"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:layout_marginBottom="16dp"
+		android:text="@string/ip_address_text" />
+	
 	<TextView
 		android:id="@+id/activity_main_you_command"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:layout_marginBottom="16dp"
+		android:textSize="16sp"
 		android:gravity="center"
 		android:text="@string/you_command" />
-
+	
 	<TextView
 		android:id="@+id/activity_main_text_view_recognized_text"
 		android:layout_width="match_parent"
@@ -31,7 +40,7 @@
 		android:gravity="center"
 		android:text="@string/hint_command"
 		android:textSize="24sp" />
-
+	
 	<ImageButton
 		android:id="@+id/activity_main_image_button_micro"
 		android:layout_width="60dp"

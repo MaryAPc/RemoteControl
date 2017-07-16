@@ -6,4 +6,6 @@
 	<string name="error">Ошибка!</string>
 	<string name="command_not_support">Команда не поддерживается</string>
 	<string name="command_done">Команда выполнена</string>
+	<string name="server_ip_address_title_menu">Введите новый IP-адрес</string>
+	<string name="ip_address_text">IP-адрес компьютера: %s</string>
 </resources>
